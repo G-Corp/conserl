@@ -1,7 +1,7 @@
 %%% @author Gavin M. Roy <gavinmroy@gmail.com>
 %%% @copyright 2015, Gavin M. Roy
 %%% @doc Consul client library
-%%% @version 0.1.0
+%%% @version 0.1.1
 -module(conserl).
 -author("gavinmroy@gmail.com").
 

@@ -9,7 +9,7 @@
 Consul client library.
 Copyright (c) 2015, Gavin M. Roy
 
-__Version:__ 0.1.0
+__Version:__ 0.1.1
 
 __Authors:__ Gavin M. Roy ([`gavinmroy@gmail.com`](mailto:gavinmroy@gmail.com)).
 <a name="index"></a>

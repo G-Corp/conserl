@@ -277,10 +277,15 @@ build_get_response([H|T], Acc) ->
 %% @end
 %%
 build_key_map(Payload) ->
-  Value = proplists:get_value(<<"Value">>, Payload),
-  #{create_index => proplists:get_value(<<"CreateIndex">>, Payload),
-    modify_index => proplists:get_value(<<"ModifyIndex">>, Payload),
-    lock_index => proplists:get_value(<<"LockIndex">>, Payload),
-    key => binary_to_list(proplists:get_value(<<"Key">>, Payload)),
-    flags => proplists:get_value(<<"Flags">>, Payload),
-    value => base64:decode_to_string(binary_to_list(Value))}.
+  case proplists:get_value(<<"Value">>, Payload) of
+    'null' ->
+        %% directory/folders does not contain a value
+        [];
+    Value ->
+      #{create_index => proplists:get_value(<<"CreateIndex">>, Payload),
+        modify_index => proplists:get_value(<<"ModifyIndex">>, Payload),
+        lock_index => proplists:get_value(<<"LockIndex">>, Payload),
+        key => binary_to_list(proplists:get_value(<<"Key">>, Payload)),
+        flags => proplists:get_value(<<"Flags">>, Payload),
+        value => base64:decode_to_string(binary_to_list(Value))}
+  end.
