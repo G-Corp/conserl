@@ -6,9 +6,7 @@
 * [Function Index](#index)
 * [Function Details](#functions)
 
-
 Consul KV API endpoints.
-
 
 <a name="types"></a>
 
@@ -20,14 +18,12 @@ Consul KV API endpoints.
 ### <a name="type-error">error()</a> ###
 
 
-
 <pre><code>
 error() = {error, Reason::list()}
 </code></pre>
 
+ Returned when an operation fails.
 
-
-  Returned when an operation fails.
 <a name="index"></a>
 
 ## Function Index ##
@@ -53,20 +49,14 @@ arguments (<code>QArgs</code>), such as <code>{"dc", "production"}</code>.</td><
 
 ### delete/1 ###
 
-
 <pre><code>
 delete(Key::list()) -&gt; ok | <a href="#type-error">error()</a>
 </code></pre>
 <br />
 
-
 Delete the specified key from the Consul KV database.
 
-
-
 *Example*:
-
-
 
 ```erlang
 
@@ -77,21 +67,15 @@ Delete the specified key from the Consul KV database.
 
 ### delete/2 ###
 
-
 <pre><code>
 delete(Key::list(), Recurse::boolean()) -&gt; ok | <a href="#type-error">error()</a>
 </code></pre>
 <br />
 
-
 Recursively delete all keys under `Key` as a prefix when `Recurse`
 is `true`, otherwise delete the key matching the `Key` value.
 
-
-
 *Example*:
-
-
 
 ```erlang
 
@@ -102,22 +86,16 @@ is `true`, otherwise delete the key matching the `Key` value.
 
 ### delete/3 ###
 
-
 <pre><code>
 delete(Key::list(), Recurse::boolean(), CAS::integer() | none) -&gt; ok | <a href="#type-error">error()</a>
 </code></pre>
 <br />
 
-
 Delete the given `Key` using Check-and-Set operations specifying the
 `ModifyIndex` using the `CAS` argument, returning `Result`. If `Recurse`
 is set `true`, delete all keys under `Key` as a prefix.
 
-
-
 *Example*:
-
-
 
 ```erlang
 
@@ -129,20 +107,14 @@ is set `true`, delete all keys under `Key` as a prefix.
 
 ### get/1 ###
 
-
 <pre><code>
 get(Key::list()) -&gt; {ok, Result::#{}} | <a href="#type-error">error()</a>
 </code></pre>
 <br />
 
-
 Get the value and metadata for a given `Key` from the KV database.
 
-
-
 *Example*:
-
-
 
 ```erlang
 
@@ -159,7 +131,6 @@ Get the value and metadata for a given `Key` from the KV database.
 
 ### get/2 ###
 
-
 <pre><code>
 get(Key, QArgs) -&gt; Result
 </code></pre>
@@ -168,10 +139,10 @@ get(Key, QArgs) -&gt; Result
 
 Return `Result` for the given `Key` and specified query args (`QArgs`)
 such as `{"dc", "production"}`.
+
 <a name="get_all-1"></a>
 
 ### get_all/1 ###
-
 
 <pre><code>
 get_all(Prefix) -&gt; list()
@@ -180,10 +151,10 @@ get_all(Prefix) -&gt; list()
 <ul class="definitions"><li><code>Prefix = list()</code></li><li><code>Result = {ok, list()} | {error, Reason}</code></li></ul>
 
 Return the values for all keys with the supplied `Prefix`.
+
 <a name="get_all-2"></a>
 
 ### get_all/2 ###
-
 
 <pre><code>
 get_all(Prefix, QArgs) -&gt; list()
@@ -193,10 +164,10 @@ get_all(Prefix, QArgs) -&gt; list()
 
 Return the values for all keys with the supplied `Prefix` passing in
 aditional query arguments (`QArgs`), such as `{"dc", "production"}`.
+
 <a name="keys-1"></a>
 
 ### keys/1 ###
-
 
 <pre><code>
 keys(Prefix) -&gt; Result
@@ -205,10 +176,10 @@ keys(Prefix) -&gt; Result
 <ul class="definitions"><li><code>Prefix = list()</code></li><li><code>Result = {ok, list()} | {error, Reason}</code></li></ul>
 
 List all keys under the given `Prefix`.
+
 <a name="keys-2"></a>
 
 ### keys/2 ###
-
 
 <pre><code>
 keys(Prefix, QArgs) -&gt; Result
@@ -219,10 +190,10 @@ keys(Prefix, QArgs) -&gt; Result
 List keys for the prefix. To add a separator for limiting the keys
 returned, pass `{separator, Value}` in the `QArgs"" %% such
 as ``{"dc", "production"}`.
+
 <a name="put-2"></a>
 
 ### put/2 ###
-
 
 <pre><code>
 put(Key, Value) -&gt; Result
@@ -231,10 +202,10 @@ put(Key, Value) -&gt; Result
 <ul class="definitions"><li><code>Key = list()</code></li><li><code>Value = list()</code></li><li><code>Result = boolean() | {error, Reason}</code></li></ul>
 
 Store `Value` for `Key` returning `Result`.
+
 <a name="put-3"></a>
 
 ### put/3 ###
-
 
 <pre><code>
 put(Key::list(), Value::list(), Flags::integer()) -&gt; boolean() | {error, list()}
@@ -242,10 +213,10 @@ put(Key::list(), Value::list(), Flags::integer()) -&gt; boolean() | {error, list
 <br />
 
 Store `Value` while specifying `Flags` for `Key` returning `Result`.
+
 <a name="put-4"></a>
 
 ### put/4 ###
-
 
 <pre><code>
 put(Key, Value, Flags, CAS) -&gt; Result
@@ -256,10 +227,10 @@ put(Key, Value, Flags, CAS) -&gt; Result
 Store `Value` while specifying `Flags` for `Key`, using the
 Check-and-Set operation, specifying the `ModifyIndex` value as `CAS`
 returning `Result`.
+
 <a name="watch-1"></a>
 
 ### watch/1 ###
-
 
 <pre><code>
 watch(Key) -&gt; Result
@@ -268,10 +239,10 @@ watch(Key) -&gt; Result
 <ul class="definitions"><li><code>Key = list()</code></li><li><code>Result = {ok, map()} | {error, Reason}</code></li></ul>
 
 Blocking watch on the specified `Key`, returning `Result`.
+
 <a name="watch-2"></a>
 
 ### watch/2 ###
-
 
 <pre><code>
 watch(Key, Fun) -&gt; {ok, <a href="#type-ref">ref()</a>}
@@ -281,10 +252,10 @@ watch(Key, Fun) -&gt; {ok, <a href="#type-ref">ref()</a>}
 
 Asynchonous watch on the specified `Key`, calling the callback `Fun`
 with the `Result`.
+
 <a name="watch-3"></a>
 
 ### watch/3 ###
-
 
 <pre><code>
 watch(Key, QArgs, Fun) -&gt; {ok, <a href="#type-ref">ref()</a>}
@@ -295,3 +266,4 @@ watch(Key, QArgs, Fun) -&gt; {ok, <a href="#type-ref">ref()</a>}
 Asynchonous watch on the specified key, calling the callback 'Fun'
 with the results of the call as Result, passing in aditional query
 arguments (`QArgs`), such as `{"dc", "production"}`.
+

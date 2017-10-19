@@ -5,13 +5,14 @@
 * [Function Index](#index)
 * [Function Details](#functions)
 
-
 Consul client library.
+
 Copyright (c) 2015, Gavin M. Roy
 
 __Version:__ 0.1.1
 
 __Authors:__ Gavin M. Roy ([`gavinmroy@gmail.com`](mailto:gavinmroy@gmail.com)).
+
 <a name="index"></a>
 
 ## Function Index ##
@@ -28,17 +29,16 @@ __Authors:__ Gavin M. Roy ([`gavinmroy@gmail.com`](mailto:gavinmroy@gmail.com)).
 
 ### start/0 ###
 
-
 <pre><code>
 start() -&gt; {ok, [atom()]}
 </code></pre>
 <br />
 
 Start the application
+
 <a name="start-2"></a>
 
 ### start/2 ###
-
 
 <pre><code>
 start(Type::atom(), Args::term()) -&gt; {ok, pid()} | ignore | {error, term()}
@@ -46,10 +46,10 @@ start(Type::atom(), Args::term()) -&gt; {ok, pid()} | ignore | {error, term()}
 <br />
 
 Start the application
+
 <a name="stop-0"></a>
 
 ### stop/0 ###
-
 
 <pre><code>
 stop() -&gt; ok | {error, term()}
@@ -57,3 +57,4 @@ stop() -&gt; ok | {error, term()}
 <br />
 
 Stop the application
+

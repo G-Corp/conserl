@@ -1,0 +1,30 @@
+@author Gavin M. Roy <gavinmroy@gmail.com>
+@author Carlo Cabanilla <carlo.cabanilla@gmail.com>
+@author Simon Ellefsen <https://github.com/simonellefsen>
+@author mijkenator <https://github.com/mijkenator>
+@author Gregoire Lejeune <greg@g-corp.io>
+@copyright 2015 Gavin M. Roy
+@version 0.1.0
+@title Erlang client for Consul
+@doc
+
+[![Build Status](https://travis-ci.org/gmr/conserl.svg?branch=master)](https://travis-ci.org/gmr/conserl)
+
+An Erlang client library for <a href="http://consul.io">Consul</a>.
+
+<h2>Requirements</h2>
+
+<ul>
+<li><a href="http://consul.io">Consul 0.5+</a></li>
+<li>Erlang 17.5+</li>
+</ul>
+
+<h2>Environment Variables</h2>
+
+<table width="100%" border="0" summary="environment variables">
+<tr><td>Name</td><td>Type</td><td>Default</td><td>Description</td></tr>
+<tr><td>hostname</td><td>list()</td><td><tt>127.0.0.1</tt></td><td>The IP address of the Consul server</td></tr>
+<tr><td>port</td><td>pos_integer()</td><td><tt>8500</tt></td><td>The HTTP port of the Consul server</td></tr>
+<tr><td>acl</td><td>list()</td><td>undefined</td><td>The ACL to use when making requests to the Consul server</td></tr>
+</table>
+

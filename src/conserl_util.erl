@@ -40,7 +40,7 @@ put(State, Path, Value, QArgs) when State#state.acl =/= undefined ->
   put(State, Path, Value, lists:merge(QArgs, [{acl, State#state.acl}]));
 put(#state{host=Host, port=Port}, Path, Value, QArgs) ->
   URL = build_url(Host, Port, Path, QArgs),
-  case httpc:request(put, {URL, [],?MIME_FORM, Value}, [], []) of
+  case httpc:request(put, {URL, [], ?MIME_FORM, Value}, [], []) of
     {ok, {{_Vsn, 200, _Reason}, _Headers, Body}} -> Body;
     {ok, {{_Vsn, _, Reason}, _Headers, _Body}} -> {error, Reason};
     {error, Reason} -> {error, Reason}
@@ -107,11 +107,11 @@ build_path([], Path) -> Path.
 build_query(Args) ->
   build_query(Args, []).
 
-build_query([{Key,Value}|Args], Parts) when is_atom(Key) =:= true ->
+build_query([{Key, Value}|Args], Parts) when is_atom(Key) =:= true ->
   build_query(Args, lists:merge(Parts, [string:join([http_uri:encode(atom_to_list(Key)),
                                                      encode_query_value(Value)], "=")]));
 
-build_query([{Key,Value}|Args], Parts) ->
+build_query([{Key, Value}|Args], Parts) ->
   build_query(Args, lists:merge(Parts, [string:join([http_uri:encode(Key),
                                                      encode_query_value(Value)], "=")]));
 

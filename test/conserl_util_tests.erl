@@ -12,30 +12,30 @@
 
 awerl_test_() ->
   {inparallel, [
-    {"test_build_path", ?MODULE, test_build_path},
-    {"test_build_query", ?MODULE, test_build_query},
-    {"test_build_full_path", ?MODULE, test_build_full_path},
-    {"test_build_full_path_with_qargs", ?MODULE, test_build_full_path_with_qargs},
-    {"test_build_url", ?MODULE, test_build_url}
-  ]}.
+                {"test_build_path", ?MODULE, test_build_path},
+                {"test_build_query", ?MODULE, test_build_query},
+                {"test_build_full_path", ?MODULE, test_build_full_path},
+                {"test_build_full_path_with_qargs", ?MODULE, test_build_full_path_with_qargs},
+                {"test_build_url", ?MODULE, test_build_url}
+               ]}.
 
 split_query(Query) ->
-    case re:split(string:strip(Query, left, $?), "&", [{return, list}]) of
-        [""]    -> [];
-        QParams -> [split_uri(Param, "=", Param) || Param <- QParams]
-    end.
+  case re:split(string:strip(Query, left, $?), "&", [{return, list}]) of
+    [""]    -> [];
+    QParams -> [split_uri(Param, "=", Param) || Param <- QParams]
+  end.
 
 split_uri(UriPart, SplitChar, NoMatchResult) ->
-    split_uri(UriPart, SplitChar, NoMatchResult, 1, 1).
+  split_uri(UriPart, SplitChar, NoMatchResult, 1, 1).
 
 split_uri(UriPart, SplitChar, NoMatchResult, SkipLeft, SkipRight) ->
-    case re:run(UriPart, SplitChar) of
-	{match, [{Match, _}]} ->
-	    {string:substr(UriPart, 1, Match + 1 - SkipLeft),
-	     string:substr(UriPart, Match + 1 + SkipRight, length(UriPart))};
-	nomatch ->
-	    NoMatchResult
-    end.
+  case re:run(UriPart, SplitChar) of
+    {match, [{Match, _}]} ->
+      {string:substr(UriPart, 1, Match + 1 - SkipLeft),
+       string:substr(UriPart, Match + 1 + SkipRight, length(UriPart))};
+    nomatch ->
+      NoMatchResult
+  end.
 
 test_build_path() ->
   ?assertEqual("/foo/b%40r/baz", conserl_util:build_path(["foo", "b@r", "baz"])).
