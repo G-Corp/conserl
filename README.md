@@ -37,8 +37,7 @@ An Erlang client library for [Consul](http://consul.io).
 
 
 <table width="100%" border="0" summary="list of modules">
-<tr><td><a href="https://github.com/botsunit/doteki/blob/greg/merge-all/doc/conserl.md" class="module">conserl</a></td></tr>
-<tr><td><a href="https://github.com/botsunit/doteki/blob/greg/merge-all/doc/conserl_agent.md" class="module">conserl_agent</a></td></tr>
-<tr><td><a href="https://github.com/botsunit/doteki/blob/greg/merge-all/doc/conserl_catalog.md" class="module">conserl_catalog</a></td></tr>
-<tr><td><a href="https://github.com/botsunit/doteki/blob/greg/merge-all/doc/conserl_kv.md" class="module">conserl_kv</a></td></tr></table>
+<tr><td><a href="https://github.com/G-Corp/conserl/blob/greg/merge-all/doc/conserl.md" class="module">conserl</a></td></tr>
+<tr><td><a href="https://github.com/G-Corp/conserl/blob/greg/merge-all/doc/conserl_catalog.md" class="module">conserl_catalog</a></td></tr>
+<tr><td><a href="https://github.com/G-Corp/conserl/blob/greg/merge-all/doc/conserl_kv.md" class="module">conserl_kv</a></td></tr></table>
 

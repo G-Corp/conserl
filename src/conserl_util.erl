@@ -1,6 +1,7 @@
 %% @hidden
 
 -module(conserl_util).
+-compile([{parse_transform, lager_transform}]).
 
 %% API
 -export([delete/3,
@@ -19,6 +20,7 @@ delete(State, Path, QArgs) when State#state.acl =/= undefined ->
   delete(State, Path, lists:merge(QArgs, [{acl, State#state.acl}]));
 delete(#state{host=Host, port=Port}, Path, QArgs) ->
   URL = build_url(Host, Port, Path, QArgs),
+  lager:debug("DELETE ~p", [URL]),
   case httpc:request(delete, {URL, []}, [], []) of
     {ok, {{_Vsn, 200, _Reason}, _Headers, Body}} -> Body;
     {ok, {{_Vsn, _StatusCode, Reason}, _Headers, _Body}} -> {error, Reason};
@@ -40,6 +42,7 @@ put(State, Path, Value, QArgs) when State#state.acl =/= undefined ->
   put(State, Path, Value, lists:merge(QArgs, [{acl, State#state.acl}]));
 put(#state{host=Host, port=Port}, Path, Value, QArgs) ->
   URL = build_url(Host, Port, Path, QArgs),
+  lager:debug("PUT ~p", [URL]),
   case httpc:request(put, {URL, [], ?MIME_FORM, Value}, [], []) of
     {ok, {{_Vsn, 200, _Reason}, _Headers, Body}} -> Body;
     {ok, {{_Vsn, _, Reason}, _Headers, _Body}} -> {error, Reason};
@@ -53,11 +56,13 @@ http_get(Host, Port, Path, QArgs, {receiver, Fun}) ->
     end
   end),
   URL = build_url(Host, Port, Path, QArgs),
+  lager:debug("GET ~p", [URL]),
   httpc:request(get, {URL, []}, [], [{sync, false},
                 {receiver, Receiver}]);
 
 http_get(Host, Port, Path, QArgs, Options) ->
   URL = build_url(Host, Port, Path, QArgs),
+  lager:debug("GET ~p", [URL]),
   process_response(httpc:request(get, {URL, []}, Options, [])).
 
 process_response({Ref, {{_Vsn, 200, _Reason}, Headers, Body}}) ->
@@ -70,10 +75,10 @@ process_response({ok, {{_Vsn, _, Reason}, _Headers, _Body}}) -> {error, Reason};
 process_response({Ref, {{_Vsn, _, Reason}, _Headers, _Body}}) -> {Ref, {error, Reason}};
 process_response({error, Reason}) -> {error, Reason}.
 
-json_decode(Value) when is_binary(Value) =:= true ->
-  jsx:decode(Value);
-json_decode(Value) when is_list(Value) =:= true ->
-  jsx:decode(list_to_binary(Value));
+json_decode(Value) when is_binary(Value) ->
+  jsx:decode(Value, [return_maps]);
+json_decode(Value) when is_list(Value) ->
+  json_decode(list_to_binary(Value));
 json_decode(Value) ->
   Value.
 

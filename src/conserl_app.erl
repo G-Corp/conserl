@@ -9,8 +9,8 @@
 
 -spec start(term(), term()) -> {error, _} | {ok, pid()} | {ok, pid(), _}.
 start(_StartType, _StartArgs) ->
-    conserl_sup:start_link().
+  conserl_sup:start_link().
 
 -spec stop(term()) -> ok.
 stop(_State) ->
-    ok.
+  ok.

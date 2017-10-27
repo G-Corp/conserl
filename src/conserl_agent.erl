@@ -1,4 +1,4 @@
-%%% @doc Consul Agent API endpoints
+% @hidden
 
 -module(conserl_agent).
 

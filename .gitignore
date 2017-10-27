@@ -10,4 +10,6 @@ rel/example_project
 .rebar
 .idea
 logs
+/log
+/ext
 /_build

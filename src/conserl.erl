@@ -7,9 +7,21 @@
 
 -behavior(gen_server).
 
--export([start/0, start/2, stop/0]).
+-export([
+         start/0
+         % , start/2
+         , stop/0
+        ]).
 
--export([start_link/0, init/1, terminate/2, code_change/3, handle_call/3, handle_cast/2, handle_info/2]).
+-export([
+         start_link/0
+         , init/1
+         , terminate/2
+         , code_change/3
+         , handle_call/3
+         , handle_cast/2
+         , handle_info/2
+        ]).
 
 
 -include("conserl.hrl").
@@ -17,17 +29,17 @@
 %% @doc Start the application
 -spec start() -> {ok, [atom()]}.
 start() ->
-    {ok, _} = application:ensure_all_started(conserl).
+  application:ensure_all_started(conserl).
 
-%% @doc Start the application
--spec start(atom(), term()) -> {'ok', pid()} | 'ignore' | {'error', term()}.
-start(_Type, _Args) ->
-  conserl_sup:start_link().
+% %% @doc Start the application
+% -spec start(atom(), term()) -> {'ok', pid()} | 'ignore' | {'error', term()}.
+% start(_Type, _Args) ->
+%   conserl_sup:start_link().
 
 %% @doc Stop the application
 -spec stop() -> ok | {error, term()}.
 stop() ->
-    application:stop(conserl).
+  application:stop(conserl).
 
 %% @private
 start_link() ->
@@ -38,18 +50,17 @@ start_link() ->
   {ok, State :: term()} | {ok, State :: term(), timeout() | hibernate} |
   {stop, Reason :: term()} | ignore.
 init([]) ->
-  {ok, Host} = application:get_env(conserl, hostname),
-  {ok, Port} = application:get_env(conserl, port),
-  {ok, ACL} = application:get_env(conserl, acl),
-  {ok, #state{host=Host, port=Port, acl=ACL}}.
+  {ok, #state{host = doteki:get_as_string([conserl, hostname]),
+              port = doteki:get_as_integer([conserl, port]),
+              acl = doteki:get_as_string([conserl, acl])}}.
 
 %% @private
 terminate(_, _) ->
-    ok.
+  ok.
 
 %% @private
 code_change(_, _, State) ->
-    {ok, State}.
+  {ok, State}.
 
 %% @private
 handle_call({delete, Path, QArgs}, _, State) ->

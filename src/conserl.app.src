@@ -1,16 +1,17 @@
 {application, conserl, [
-  {description, "Consul client"},
-  {vsn, "0.1.1"},
-  {registered, []},
-  {applications, [
-    kernel,
-    stdlib,
-    inets
-  ]},
-  {mod, {conserl, []}},
-  {env, [
-    {hostname, "localhost"},
-    {port, 8500},
-    {acl, undefined}
-  ]}
+  {description, "Consul client"}
+  , {vsn, "0.1.1"}
+  , {registered, []}
+  , {applications, [
+                    kernel
+                    , stdlib
+                    , inets
+                    , lager
+                   ]}
+  , {mod, {conserl_app, []}}
+  , {env, [
+           {hostname, "localhost"}
+           , {port, 8500}
+           , {acl, undefined}
+          ]}
 ]}.
