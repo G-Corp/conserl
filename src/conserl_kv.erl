@@ -2,12 +2,23 @@
 
 -module(conserl_kv).
 
--export([delete/1, delete/2, delete/3,
-         get/1, get/2,
-         get_all/1, get_all/2,
-         keys/1, keys/2,
-         put/2, put/3, put/4,
-         watch/1, watch/2, watch/3]).
+-export([
+         delete/1
+         , delete/2
+         , delete/3
+         , get/1
+         , get/2
+         , get_all/1
+         , get_all/2
+         , keys/1
+         , keys/2
+         , put/2
+         , put/3
+         , put/4
+         , watch/1
+         , watch/2
+         , watch/3
+        ]).
 
 -type error() :: {error, Reason :: list()}.  %% Returned when an operation fails.
 
@@ -131,7 +142,7 @@ keys(Prefix) ->
 %%       QArgs  = list()
 %%       Result = {ok, list()}|{error, Reason}
 %% @doc List keys for the prefix. To add a separator for limiting the keys
-%% returned, pass ``@{separator, Value@}'' in the ``QArgs"" %% such
+%% returned, pass ``@{separator, Value@}'' in the ``QArgs"" such
 %% as ``@{"dc", "production"@}''.
 %% @end
 %%
@@ -151,7 +162,7 @@ keys(Prefix, QArgs) ->
 %% @end
 %%
 put(Key, Value) ->
-  put(Key, Value, 0, none).
+  put(Key, Value, 0).
 
 -spec put(Key :: list(), Value :: list(), Flags :: integer()) -> boolean() | {error, list()}.
 %% @doc Store ``Value'' while specifying ``Flags'' for ``Key'' returning ``Result''.
@@ -277,15 +288,14 @@ build_get_response([H|T], Acc) ->
 %% @end
 %%
 build_key_map(Payload) ->
-  case proplists:get_value(<<"Value">>, Payload) of
-    'null' ->
-        %% directory/folders does not contain a value
-        [];
+  case maps:get(<<"Value">>, Payload, undefined) of
+    undefined ->
+      #{};
     Value ->
-      #{create_index => proplists:get_value(<<"CreateIndex">>, Payload),
-        modify_index => proplists:get_value(<<"ModifyIndex">>, Payload),
-        lock_index => proplists:get_value(<<"LockIndex">>, Payload),
-        key => binary_to_list(proplists:get_value(<<"Key">>, Payload)),
-        flags => proplists:get_value(<<"Flags">>, Payload),
+      #{create_index => maps:get(<<"CreateIndex">>, Payload, undefined),
+        modify_index => maps:get(<<"ModifyIndex">>, Payload, undefined),
+        lock_index => maps:get(<<"LockIndex">>, Payload, undefined),
+        key => binary_to_list(maps:get(<<"Key">>, Payload)),
+        flags => maps:get(<<"Flags">>, Payload, undefined),
         value => base64:decode_to_string(binary_to_list(Value))}
   end.

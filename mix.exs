@@ -4,7 +4,7 @@ defmodule Conserl.Mixfile do
   def project do
     [
       app: :conserl,
-      version: "0.1.1",
+      version: "0.2.0",
       elixir: "~> 1.2",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
@@ -15,14 +15,16 @@ defmodule Conserl.Mixfile do
 
   def application do
     [
-       applications: [:inets],
+       applications: [:inets, :lager],
        env: [{:hostname, 'localhost'}, {:port, 8500}, {:acl, :undefined}],
-       mod: {:conserl, []}
+       mod: {:conserl_app, []}
     ]
   end
 
   defp deps do
     [
+      {:lager, "~> 3.5.1"},
+      {:bucs, "~> 1.0.12"},
       {:jsx, "~> 2.8"}
     ]
   end

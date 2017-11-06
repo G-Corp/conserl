@@ -1,14 +1,12 @@
 {"1.1.0",
-[{<<"bucs">>,{pkg,<<"bucs">>,<<"1.0.12">>},1},
- {<<"doteki">>,{pkg,<<"doteki">>,<<"1.0.6">>},0},
+[{<<"bucs">>,{pkg,<<"bucs">>,<<"1.0.12">>},0},
  {<<"goldrush">>,{pkg,<<"goldrush">>,<<"0.1.9">>},1},
- {<<"jsx">>,{pkg,<<"jsx">>,<<"2.8.2">>},0},
- {<<"lager">>,{pkg,<<"lager">>,<<"3.5.1">>},0}]}.
+ {<<"jsx">>,{pkg,<<"jsx">>,<<"2.8.3">>},0},
+ {<<"lager">>,{pkg,<<"lager">>,<<"3.5.2">>},0}]}.
 [
 {pkg_hash,[
  {<<"bucs">>, <<"61D5AAA41E501C5F1567BC9DBC477F2F140BFFC46ABC1C0E5A0BEC8C65EC1493">>},
- {<<"doteki">>, <<"A953213C8C34E5AF8DE22CB48779BB6390F0D352D43ECE3B75223BD941EC543B">>},
  {<<"goldrush">>, <<"F06E5D5F1277DA5C413E84D5A2924174182FB108DABB39D5EC548B27424CD106">>},
- {<<"jsx">>, <<"7ACC7D785B5ABE8A6E9ADBDE926A24E481F29956DD8B4DF49E3E4E7BCC92A018">>},
- {<<"lager">>, <<"63897A61AF646C59BB928FEE9756CE8BDD02D5A1A2F3551D4A5E38386C2CC071">>}]}
+ {<<"jsx">>, <<"A05252D381885240744D955FBE3CF810504EB2567164824E19303EA59EEF62CF">>},
+ {<<"lager">>, <<"614A8C8F67BF99B69EB264EA22121AD25511C055AAEC09B086773D5108C6767F">>}]}
 ].

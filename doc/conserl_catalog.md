@@ -12,103 +12,118 @@ Consul Catalog API endpoints.
 ## Function Index ##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_service_nodes-1">get_service_nodes/1</a></td><td></td></tr><tr><td valign="top"><a href="#get_service_nodes-2">get_service_nodes/2</a></td><td></td></tr><tr><td valign="top"><a href="#node-1">node/1</a></td><td></td></tr><tr><td valign="top"><a href="#node-2">node/2</a></td><td></td></tr><tr><td valign="top"><a href="#nodes-0">nodes/0</a></td><td>Return nodes as a list.</td></tr><tr><td valign="top"><a href="#nodes-1">nodes/1</a></td><td>Return nodes as a list.</td></tr><tr><td valign="top"><a href="#nodes_with_tags-0">nodes_with_tags/0</a></td><td></td></tr><tr><td valign="top"><a href="#nodes_with_tags-1">nodes_with_tags/1</a></td><td></td></tr><tr><td valign="top"><a href="#services-0">services/0</a></td><td>Return services as a list.</td></tr><tr><td valign="top"><a href="#services-1">services/1</a></td><td>Return services as a proplist of service name a list of nodes.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#datacenters-0">datacenters/0</a></td><td>
+Return the list of datacenters.</td></tr><tr><td valign="top"><a href="#node-1">node/1</a></td><td>
+Return node with given ID.</td></tr><tr><td valign="top"><a href="#node-2">node/2</a></td><td>
+Return node with given ID and DC.</td></tr><tr><td valign="top"><a href="#nodes-0">nodes/0</a></td><td>
+Return all nodes.</td></tr><tr><td valign="top"><a href="#nodes-1">nodes/1</a></td><td>
+Return nodes for the given datacenter.</td></tr><tr><td valign="top"><a href="#service-1">service/1</a></td><td>
+Return service with given Name.</td></tr><tr><td valign="top"><a href="#service-2">service/2</a></td><td>
+Return service with given Name and DC.</td></tr><tr><td valign="top"><a href="#services-0">services/0</a></td><td>
+Return all services.</td></tr><tr><td valign="top"><a href="#services-1">services/1</a></td><td>
+Return services for the given datacenter.</td></tr></table>
 
 
 <a name="functions"></a>
 
 ## Function Details ##
 
-<a name="get_service_nodes-1"></a>
+<a name="datacenters-0"></a>
 
-### get_service_nodes/1 ###
+### datacenters/0 ###
 
 <pre><code>
-get_service_nodes(ServiceName::string()) -&gt; {ok, [{string(), string(), [{string(), [string()]}]}]}
+datacenters() -&gt; {ok, [binary()]} | {<a href="error.md#type-term">error:term()</a>}
 </code></pre>
 <br />
 
-<a name="get_service_nodes-2"></a>
-
-### get_service_nodes/2 ###
-
-<pre><code>
-get_service_nodes(ServiceName::string(), Tag::string()) -&gt; {ok, [{string(), string(), [{string(), [string()]}]}]}
-</code></pre>
-<br />
+Return the list of datacenters
 
 <a name="node-1"></a>
 
 ### node/1 ###
 
 <pre><code>
-node(Node::string()) -&gt; [{binary(), list()}]
+node(ID::string() | binary()) -&gt; {ok, #{}} | {error, term()}
 </code></pre>
 <br />
+
+Return node with given ID
 
 <a name="node-2"></a>
 
 ### node/2 ###
 
-`node(Node, DC) -> any()`
+<pre><code>
+node(ID::string() | binary(), DC::string() | binary()) -&gt; {ok, #{}} | {error, term()}
+</code></pre>
+<br />
+
+Return node with given ID and DC
 
 <a name="nodes-0"></a>
 
 ### nodes/0 ###
 
 <pre><code>
-nodes() -&gt; list()
+nodes() -&gt; {ok, [#{}]} | {error, term()}
 </code></pre>
 <br />
 
-Return nodes as a list
+Return all nodes
 
 <a name="nodes-1"></a>
 
 ### nodes/1 ###
 
 <pre><code>
-nodes(DC) -&gt; list()
+nodes(DC::string() | binary()) -&gt; {ok, [#{}]} | {error, term()}
 </code></pre>
 <br />
 
-Return nodes as a list
+Return nodes for the given datacenter
 
-<a name="nodes_with_tags-0"></a>
+<a name="service-1"></a>
 
-### nodes_with_tags/0 ###
+### service/1 ###
 
 <pre><code>
-nodes_with_tags() -&gt; {ok, [{string(), string(), [{string(), [string()]}]}]}
+service(Name::string() | binary()) -&gt; {ok, #{}} | {error, term()}
 </code></pre>
 <br />
 
-<a name="nodes_with_tags-1"></a>
+Return service with given Name
 
-### nodes_with_tags/1 ###
+<a name="service-2"></a>
 
-`nodes_with_tags(DC) -> any()`
+### service/2 ###
+
+<pre><code>
+service(Name::string() | binary(), DC::string() | binary()) -&gt; {ok, #{}} | {error, term()}
+</code></pre>
+<br />
+
+Return service with given Name and DC
 
 <a name="services-0"></a>
 
 ### services/0 ###
 
 <pre><code>
-services() -&gt; list()
+services() -&gt; {ok, [#{}]} | {error, term()}
 </code></pre>
 <br />
 
-Return services as a list
+Return all services
 
 <a name="services-1"></a>
 
 ### services/1 ###
 
 <pre><code>
-services(DC) -&gt; list()
+services(DC::string() | binary()) -&gt; {ok, [#{}]} | {error, term()}
 </code></pre>
+<br />
 
-<ul class="definitions"><li><code>DC = list()</code></li></ul>
-
-Return services as a proplist of service name a list of nodes
+Return services for the given datacenter
 

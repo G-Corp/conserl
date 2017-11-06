@@ -1,7 +1,7 @@
 %%% @author Gavin M. Roy <gavinmroy@gmail.com>
 %%% @copyright 2015, Gavin M. Roy
 %%% @doc Consul client library
-%%% @version 0.1.1
+%%% @version 0.2.0
 -module(conserl).
 -author("gavinmroy@gmail.com").
 
@@ -50,9 +50,9 @@ start_link() ->
   {ok, State :: term()} | {ok, State :: term(), timeout() | hibernate} |
   {stop, Reason :: term()} | ignore.
 init([]) ->
-  {ok, #state{host = doteki:get_as_string([conserl, hostname]),
-              port = doteki:get_as_integer([conserl, port]),
-              acl = doteki:get_as_string([conserl, acl])}}.
+  {ok, #state{host = application:get_env(conserl, hostname, "127.0.0.1"),
+              port = application:get_env(conserl, port, 8500),
+              acl = application:get_env(conserl, acl, undefined)}}.
 
 %% @private
 terminate(_, _) ->

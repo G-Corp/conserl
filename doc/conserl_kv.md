@@ -188,7 +188,7 @@ keys(Prefix, QArgs) -&gt; Result
 <ul class="definitions"><li><code>Prefix = list()</code></li><li><code>QArgs = list()</code></li><li><code>Result = {ok, list()} | {error, Reason}</code></li></ul>
 
 List keys for the prefix. To add a separator for limiting the keys
-returned, pass `{separator, Value}` in the `QArgs"" %% such
+returned, pass `{separator, Value}` in the `QArgs"" such
 as ``{"dc", "production"}`.
 
 <a name="put-2"></a>
