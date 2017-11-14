@@ -1,8 +1,27 @@
-language: erlang
-otp_release:
-- 17.4
+language: elixir
+
+dist: trusty
+
+sudo: required
+
+notifications:
+  email: false
+
 before_install:
-    - curl -L -o /tmp/0.5.0_linux_amd64.zip https://dl.bintray.com/mitchellh/consul/0.5.0_linux_amd64.zip
-    - unzip /tmp/0.5.0_linux_amd64.zip
-    - ./consul agent -config-file consul-test.json > /tmp/consul.log &
-script: make test
+  - curl -L -o /tmp/consul.zip https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_linux_amd64.zip
+  - unzip /tmp/consul.zip
+  - ./consul agent -config-file consul-test.json > /tmp/consul.log &
+
+elixir:
+  - 1.4.5
+  - 1.5.1
+
+otp_release:
+  - 20.0
+  - 19.3
+  - 18.3
+
+script:
+  - mix local.rebar --force
+  - mix local.hex --force
+  - make dist
