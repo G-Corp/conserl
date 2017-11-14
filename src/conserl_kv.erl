@@ -1,6 +1,7 @@
 %%% @doc Consul KV API endpoints
 
 -module(conserl_kv).
+-compile([{parse_transform, lager_transform}]).
 
 -export([
          delete/1
@@ -291,6 +292,12 @@ build_key_map(Payload) ->
   case maps:get(<<"Value">>, Payload, undefined) of
     undefined ->
       #{};
+    null ->
+      #{create_index => maps:get(<<"CreateIndex">>, Payload, undefined),
+        modify_index => maps:get(<<"ModifyIndex">>, Payload, undefined),
+        lock_index => maps:get(<<"LockIndex">>, Payload, undefined),
+        key => binary_to_list(maps:get(<<"Key">>, Payload)),
+        flags => maps:get(<<"Flags">>, Payload, undefined)};
     Value ->
       #{create_index => maps:get(<<"CreateIndex">>, Payload, undefined),
         modify_index => maps:get(<<"ModifyIndex">>, Payload, undefined),
