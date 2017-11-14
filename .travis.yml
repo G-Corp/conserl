@@ -11,6 +11,7 @@ before_install:
   - curl -L -o /tmp/consul.zip https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_linux_amd64.zip
   - unzip /tmp/consul.zip
   - ./consul agent -config-file consul-test.json > /tmp/consul.log &
+  - sleep 5
 
 elixir:
   - 1.4.5
