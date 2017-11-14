@@ -8,7 +8,7 @@ __Version:__ 0.1.0
 
 __Authors:__ Gavin M. Roy ([`gavinmroy@gmail.com`](mailto:gavinmroy@gmail.com)), Carlo Cabanilla ([`carlo.cabanilla@gmail.com`](mailto:carlo.cabanilla@gmail.com)), Simon Ellefsen ([`https://github.com/simonellefsen`](mailto:https://github.com/simonellefsen)), mijkenator ([`https://github.com/mijkenator`](mailto:https://github.com/mijkenator)), Gregoire Lejeune ([`greg@g-corp.io`](mailto:greg@g-corp.io)).
 
-[![Build Status](https://travis-ci.org/gmr/conserl.svg?branch=master)](https://travis-ci.org/gmr/conserl)
+[![Build Status](https://travis-ci.org/G-Corp/conserl.svg?branch=master)](https://travis-ci.org/G-Corp/conserl)
 
 An Erlang client library for [Consul](http://consul.io).
 

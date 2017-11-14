@@ -8,7 +8,7 @@
 @title Erlang client for Consul
 @doc
 
-[![Build Status](https://travis-ci.org/gmr/conserl.svg?branch=master)](https://travis-ci.org/gmr/conserl)
+[![Build Status](https://travis-ci.org/G-Corp/conserl.svg?branch=master)](https://travis-ci.org/G-Corp/conserl)
 
 An Erlang client library for <a href="http://consul.io">Consul</a>.
 
